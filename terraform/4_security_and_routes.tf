@@ -123,3 +123,23 @@ resource "aws_security_group_rule" "allow_grafana" {
   cidr_blocks       = ["0.0.0.0/0"] # Allow access from any IP
   security_group_id = aws_security_group.web_sg.id
 }
+
+# EN: Open Prometheus Web UI (Port 9090)
+resource "aws_security_group_rule" "allow_prometheus_ui" {
+  type              = "ingress"
+  from_port         = 9090
+  to_port           = 9090
+  protocol          = "tcp"
+  cidr_blocks       = ["0.0.0.0/0"] 
+  security_group_id = aws_security_group.web_sg.id
+}
+
+# EN: Open Node Exporter Port (Port 9100) - 
+resource "aws_security_group_rule" "allow_node_exporter" {
+  type              = "ingress"
+  from_port         = 9100
+  to_port           = 9100
+  protocol          = "tcp"
+  cidr_blocks       = [var.vpc_cidr] # Allow acces from inside VPC only
+  security_group_id = aws_security_group.web_sg.id
+}
