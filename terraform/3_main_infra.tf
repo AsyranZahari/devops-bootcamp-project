@@ -48,6 +48,7 @@ resource "aws_instance" "ansible_controller" {
   private_ip    = "10.0.0.135" 
   tags = { Name = "Ansible-Server" }
   vpc_security_group_ids = [aws_security_group.web_sg.id] # Added security group id
+  iam_instance_profile = aws_iam_instance_profile.ssm_profile.id # Added Instance Profile to be used by AWS . SSM 
 }
 
 # EN: Creating the Monitoring Server (Private) 
@@ -59,4 +60,5 @@ resource "aws_instance" "monitoring_server" {
   private_ip    = "10.0.0.136" 
   tags = { Name = "Monitoring-Server" }
   vpc_security_group_ids = [aws_security_group.web_sg.id] # Added security group id
+  iam_instance_profile = aws_iam_instance_profile.ssm_profile.id# Added Instance Profile to be used by AWS . SSM 
 }
