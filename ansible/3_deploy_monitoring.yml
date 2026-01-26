@@ -1,0 +1,22 @@
+---
+- name: Deploy Monitoring Stack
+  hosts: monitoring
+  become: yes
+  tasks:
+    - name: Run Grafana Container
+      community.docker.docker_container:
+        name: grafana
+        image: grafana/grafana:latest
+        state: started
+        restart_policy: always
+        published_ports:
+          - "3000:3000"
+
+    - name: Run Prometheus Container
+      community.docker.docker_container:
+        name: prometheus
+        image: prom/prometheus:latest
+        state: started
+        restart_policy: always
+        published_ports:
+          - "9090:9090"
