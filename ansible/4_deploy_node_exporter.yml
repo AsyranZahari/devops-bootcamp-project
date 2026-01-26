@@ -1,0 +1,13 @@
+---
+- name: Deploy Node Exporter
+  hosts: webserver
+  become: yes
+  tasks:
+    - name: Run Node Exporter Container
+      community.docker.docker_container:
+        name: node_exporter
+        image: prom/node-exporter:latest
+        state: started
+        restart_policy: always
+        published_ports:
+          - "9100:9100"
