@@ -3,7 +3,7 @@ Project Name : Trust Me, I’m a DevOps Engineer
 # DevOps Bootcamp Final Project 2025
 
 ## 🌐 Project Links
-- **Web Application**: [http://web.nipponmori.store](http://web.nipponmori.store)
+- **WebApplication**:[http://web.nipponmori.store/](http://web.nipponmori.store/)
 - **Monitoring (Grafana)**: [https://monitoring.nipponmori.store](https://monitoring.nipponmori.store) 
 - **GitHub Repository**: [https://github.com/AsyranZahari/devops-bootcamp-project](https://github.com/AsyranZahari/devops-bootcamp-project)
 
