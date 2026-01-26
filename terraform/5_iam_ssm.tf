@@ -30,3 +30,10 @@ resource "aws_iam_instance_profile" "ssm_profile" {
   name = "devops-ssm-profile"
   role = aws_iam_role.ssm_role.name
 }
+
+# EN: Add EC2 Instance Connect permission to the existing role
+# JP: 既存のロールに EC2 Instance Connect の権限を追加する
+resource "aws_iam_role_policy_attachment" "ec2_instance_connect_attach" {
+  role       = aws_iam_role.ssm_role.name
+  policy_arn = "arn:aws:iam::aws:policy/EC2InstanceConnect" 
+}
