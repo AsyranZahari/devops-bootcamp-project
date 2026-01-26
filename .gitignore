@@ -1,3 +1,6 @@
+# Ignore inventory file with the real IP
+ansible/inventory.ini
+
 # Ignore Terraform provider and modul folder
 .terraform/
 *.tfstate
