@@ -14,7 +14,7 @@ Project Name : Trust Me, I’m a DevOps Engineer
 - **Configuration Management**: Ansible
 - **Containerization**: Docker
 - **Monitoring Stack**: Prometheus & Grafana
-- **Secure Access**: Cloudflare Tunnel (In Progress)
+- **Secure Access**: Cloudflare Tunnel
 
 ## 🚀 Deployment Steps
 1. Infrastructure provisioning using Terraform.
