@@ -4,7 +4,7 @@ Project Name : Trust Me, I’m a DevOps Engineer
 
 ## 🌐 Project Links
 - **Web Application**: [http://web.nipponmori.store](http://web.nipponmori.store)
-- **Monitoring (Grafana)**: [https://monitoring.nipponmori.store](https://monitoring.nipponmori.store) (Status: Configuring Tunnel)
+- **Monitoring (Grafana)**: [https://monitoring.nipponmori.store](https://monitoring.nipponmori.store) 
 - **GitHub Repository**: [https://github.com/AsyranZahari/devops-bootcamp-project](https://github.com/AsyranZahari/devops-bootcamp-project)
 
 ## 🛠️ Infrastructure Overview
@@ -20,4 +20,4 @@ Project Name : Trust Me, I’m a DevOps Engineer
 1. Infrastructure provisioning using Terraform.
 2. Server configuration and service deployment via Ansible.
 3. Monitoring setup with Prometheus scraping Node Exporter metrics.
-4. (Next Step) Secure access via Cloudflare Tunnel.
+4. Secure access via Cloudflare Tunnel.
