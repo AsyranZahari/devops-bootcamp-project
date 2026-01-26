@@ -112,3 +112,14 @@ resource "aws_route_table_association" "private_assoc" {
   subnet_id      = aws_subnet.private.id
   route_table_id = aws_route_table.private_rt.id
 }
+
+# EN: Open Access Port 3000 (Grafana)
+# JP: Port 3000 アクセスポートを開く(Grafana)
+resource "aws_security_group_rule" "allow_grafana" {
+  type              = "ingress"
+  from_port         = 3000
+  to_port           = 3000
+  protocol          = "tcp"
+  cidr_blocks       = ["0.0.0.0/0"] # Allow access from any IP
+  security_group_id = aws_security_group.web_sg.id
+}

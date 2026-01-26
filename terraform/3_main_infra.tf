@@ -58,8 +58,10 @@ resource "aws_instance" "ansible_controller" {
 resource "aws_instance" "monitoring_server" {
   ami           = var.ami_id
   instance_type = var.instance_type
-  subnet_id     = aws_subnet.private.id
-  private_ip    = "10.0.0.136" 
+  #subnet_id     = aws_subnet.private.id # moved server from private to public as cannot access 
+  subnet_id     = aws_subnet.public.id
+  associate_public_ip_address = true # Public IP for Monitoring Server
+  #private_ip    = "10.0.0.136"  #removed private IP specification. Let AWS specify automatically
   tags = { Name = "Monitoring-Server" }
   vpc_security_group_ids = [aws_security_group.web_sg.id] # Added security group id
   iam_instance_profile = aws_iam_instance_profile.ssm_profile.id # Add IAM profile for SSM access 
