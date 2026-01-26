@@ -38,6 +38,7 @@ resource "aws_instance" "web_server" {
   tags = { Name = "Web-Server" }
   vpc_security_group_ids = [aws_security_group.web_sg.id] # Added security group id
   iam_instance_profile   = aws_iam_instance_profile.ssm_profile.id # Add IAM profile for SSM access
+  associate_public_ip_address = true # to make sure web server getting the public IP automatically
 }
 
 # EN: Creating the Ansible Controller (Private) 
