@@ -1,0 +1,5 @@
+# Ignore Terraform provider and modul folder
+.terraform/
+*.tfstate
+*.tfstate.backup
+.terraform.lock.hcl
