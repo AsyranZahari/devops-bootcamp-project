@@ -36,6 +36,7 @@ resource "aws_instance" "web_server" {
   subnet_id     = aws_subnet.public.id
   private_ip    = "10.0.0.5" 
   tags = { Name = "Web-Server" }
+  vpc_security_group_ids = [aws_security_group.web_sg.id] # Added security group id
 }
 
 # EN: Creating the Ansible Controller (Private) 
@@ -46,6 +47,7 @@ resource "aws_instance" "ansible_controller" {
   subnet_id     = aws_subnet.private.id
   private_ip    = "10.0.0.135" 
   tags = { Name = "Ansible-Server" }
+  vpc_security_group_ids = [aws_security_group.web_sg.id] # Added security group id
 }
 
 # EN: Creating the Monitoring Server (Private) 
@@ -56,4 +58,5 @@ resource "aws_instance" "monitoring_server" {
   subnet_id     = aws_subnet.private.id
   private_ip    = "10.0.0.136" 
   tags = { Name = "Monitoring-Server" }
+  vpc_security_group_ids = [aws_security_group.web_sg.id] # Added security group id
 }
