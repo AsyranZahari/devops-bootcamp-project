@@ -1,0 +1,27 @@
+---
+- name: Install Docker on all servers
+  # EN: Apply to all hosts defined in inventory
+  # JP: インベントリで定義されたすべてのホストに適用
+  hosts: all
+  become: yes
+  tasks:
+    - name: Update apt cache
+      # EN: Refresh package list
+      # JP: パッケージリストを更新
+      apt:
+        update_cache: yes
+
+    - name: Install Docker.io
+      # EN: Install the Docker engine
+      # JP: Dockerエンジンをインストール
+      apt:
+        name: docker.io
+        state: present
+
+    - name: Ensure Docker is started
+      # EN: Start and enable Docker service
+      # JP: Dockerサービスを開始し、有効化する
+      systemd:
+        name: docker
+        state: started
+        enabled: yes
