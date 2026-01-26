@@ -73,3 +73,42 @@ resource "aws_security_group" "private_sg" {
 
   tags = { Name = "private-security-group" }
 }
+
+# EN: Allocate an Elastic IP for the NAT Gateway
+# JP: NATゲートウェイ用のエラスティックIPを割り当てる
+resource "aws_eip" "nat_eip" {
+  domain = "vpc"
+  tags   = { Name = "nat-gateway-eip" }
+}
+
+# EN: Create the NAT Gateway in the Public Subnet
+# JP: パブリックサブネットにNATゲートウェイを作成する
+resource "aws_nat_gateway" "nat_gw" {
+  allocation_id = aws_eip.nat_eip.id
+  subnet_id     = aws_subnet.public.id # NAT mesti duduk di tempat ada internet
+
+  tags = { Name = "main-nat-gateway" }
+
+  # To ensure proper ordering, it is recommended to add an explicit dependency
+  depends_on = [aws_internet_gateway.igw]
+}
+
+# EN: Private Route Table to allow private servers to access internet via NAT
+# JP: プライベートサーバーがNAT経由でインターネットにアクセスするためのルートテーブル
+resource "aws_route_table" "private_rt" {
+  vpc_id = aws_vpc.main.id
+
+  route {
+    cidr_block     = "0.0.0.0/0"
+    nat_gateway_id = aws_nat_gateway.nat_gw.id
+  }
+
+  tags = { Name = "private-route-table" }
+}
+
+# EN: Associate Private Subnet with Private Route Table
+# JP: プライベートサブネットをプライベートルートテーブルに関連付け
+resource "aws_route_table_association" "private_assoc" {
+  subnet_id      = aws_subnet.private.id
+  route_table_id = aws_route_table.private_rt.id
+}
